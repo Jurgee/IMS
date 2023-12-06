@@ -2,26 +2,31 @@
 #include "Road.h"
 #include <optional>
 #include <vector>
+#include <ctime>
+#include <cstdlib>
 
-int main(int argc, char *argv[]) {
-  Car carS(3, 1);
-  Car car1(0, 1);
-  Car car2(0, 1);
-  Car car3(0, 1);
-  Car car4(0, 1);
+#define MAX_VELOCITY 5
 
-  std::vector<std::optional<Car>> lane = std::vector<std::optional<Car>>(20);
+int main(int argc, char *argv[])
+{
+  std::srand(std::time(nullptr));
 
-  lane[0] = carS;
-  lane[10] = car1;
-  lane[12] = car2;
-  lane[13] = car3;
-  lane[14] = car4;
+  std::vector<std::optional<Car>> lane = std::vector<std::optional<Car>>(100);
+
+  for (int i = 0; i < lane.size(); i++)
+  {
+    if (std::rand() % 2 == 0)
+    {
+      auto carsMaxVel = std::rand() % (MAX_VELOCITY - 2) + 3;
+      lane[i] = Car(std::rand() % carsMaxVel, 1, carsMaxVel);
+    }
+  }
 
   Road road;
   road.setCars(lane);
 
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 30000; i++)
+  {
     road.printRoad();
     road.step();
   }
