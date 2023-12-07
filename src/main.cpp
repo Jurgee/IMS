@@ -6,7 +6,7 @@
 #include <memory>
 #include <vector>
 
-#define ITERATION_COUNT 10
+#define ITERATION_COUNT 30000
 #define CAR_SPAWN_PROBABILITY 30
 
 int main(int argc, char *argv[]) {

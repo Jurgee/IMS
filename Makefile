@@ -26,5 +26,8 @@ run: all
 debug-run: debug
 	./$(EXEC) $(ARGS)
 
+clean-run: clean all
+	./$(EXEC) $(ARGS)
+
 clean:
 	rm -f $(EXEC) $(OBJS)
