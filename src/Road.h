@@ -1,22 +1,20 @@
 #pragma once
 
 #include <iostream>
-#include <optional>
+#include <memory>
 #include <vector>
 
 #include "Car.h"
 
 class Road {
 public:
-  Road();
+  Road(std::vector<std::unique_ptr<Car>> initRoadState)
+      : cars(std::move(initRoadState)) {}
 
   void step();
 
   void printRoad();
 
-  std::vector<std::optional<Car>> cars;
-
-
-
-
+private:
+  std::vector<std::unique_ptr<Car>> cars;
 };

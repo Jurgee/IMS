@@ -1,28 +1,33 @@
 #include "Car.h"
 #include "Road.h"
+
 #include <cstdlib>
 #include <ctime>
-#include <optional>
+#include <memory>
 #include <vector>
 
-#define MAX_VELOCITY 5
+#define ITERATION_COUNT 10
+#define CAR_SPAWN_PROBABILITY 30
 
 int main(int argc, char *argv[]) {
   std::srand(std::time(nullptr));
 
-  std::vector<std::optional<Car>> lane = std::vector<std::optional<Car>>(100);
+  std::vector<std::unique_ptr<Car>> lane =
+      std::vector<std::unique_ptr<Car>>(100);
 
-  for (int i = 0; i < lane.size(); i++) {
-    if (std::rand() % 2 == 0) {
-      auto carsMaxVel = std::rand() % (MAX_VELOCITY - 2) + 3;
-      lane[i] = Car(std::rand() % carsMaxVel, 2, carsMaxVel);
+  int count = 0;
+  for (std::size_t i = 0; i < lane.size(); i++) {
+    if (std::rand() % 100 < 30) {
+      lane[i] = std::make_unique<Car>();
+      count++;
     }
   }
 
-  Road road;
-  road.setCars(lane);
+  printf("Number of cars: %d\n", count);
 
-  for (int i = 0; i < 30000; i++) {
+  Road road = Road(std::move(lane));
+
+  for (int i = 0; i < ITERATION_COUNT; i++) {
     road.printRoad();
     road.step();
   }
