@@ -46,14 +46,15 @@ int main(int argc, char *argv[]) {
   // lane.emplace(lane.begin() + 14, 4, a, vm);
   // lane.emplace(lane.begin() + 18, 3, a, vm);
 
-  lane.emplace(lane.begin(), 5, a, vm);
-  lane.emplace(lane.begin() + 5, 4, a, vm);
-  lane.emplace(lane.begin() + 7, 3, a, vm);
-  lane.emplace(lane.begin() + 10, 2, a, vm);
-  lane.emplace(lane.begin() + 14, 4, a, vm);
-  lane.emplace(lane.begin() + 18, 3, a, vm);
+  // lane.emplace(lane.begin(), 5, a, vm);
+  // lane.emplace(lane.begin() + 5, 4, a, vm);
+  // lane.emplace(lane.begin() + 7, 3, a, vm);
+  // lane.emplace(lane.begin() + 10, 2, a, vm);
+  // lane.emplace(lane.begin() + 14, 4, a, vm);
+  // lane.emplace(lane.begin() + 18, 3, a, vm);
 
-  Road road = Road(lane);
+  Road road = Road(std::move(lane));
+
 
   for (int i = 0; i < ITERATION_COUNT; i++) {
     printf("%6d |", i);

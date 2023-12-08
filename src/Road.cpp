@@ -8,15 +8,11 @@
  */
 int countGap(const std::vector<std::unique_ptr<Car>> &array, int currentIndex) {
   int gap = 0;
-  std::cout << "counting gap for car " << array[currentIndex].get()->id << ": ";
-
   for (std::size_t i = (currentIndex + 1) % array.size();;
        i = (i + 1) % array.size()) {
-    std::cout << i << " ";
     if (array[i] == nullptr) {
       gap++;
     } else {
-      std::cout << std::endl;
       return gap;
     }
   }
@@ -29,16 +25,13 @@ void Road::step() {
   for (int i = 0; i < length; i++) {
     if (cars[i] != nullptr) {
       int spaceInFront = countGap(cars, i);
-      std::cout << "Car " << cars[i].get()->id
-                << " velocity: " << cars[i].get()->velocity
-                << " space in front: " << spaceInFront << " | ";
       cars[i].get()->updateVelocity(i, spaceInFront);
       int newPosition = (i + cars[i].get()->velocity) % length;
-      std::cout << "new position: " << newPosition
-                << " new velocity: " << cars[i].get()->velocity << std::endl;
-      newCars[newPosition] = std::move(cars[i]); // TODO nemovovat ale copy
+      newCars.emplace(newCars.begin() + newPosition, cars[i].get());
     }
   }
+
+  cars = newCars;
 }
 
 void Road::printRoad() {
