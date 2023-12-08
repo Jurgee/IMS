@@ -28,7 +28,10 @@ public:
   // acceleration in cells per second squared
   const float a;
   // additional security distance in cells
-  int sg() const { return std::ceil((2 * velocity) / 3 - agr); }
+  int sg() const {
+    int sg = std::ceil((2 * velocity) / 3 - agr);
+    return sg > 0 ? sg : 0;
+  }
   // current velocity in cells per second
   int velocity;
   // aggressiveness of the driver

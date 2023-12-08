@@ -6,7 +6,7 @@
  * @brief Count number of empty cells in front of the car
  *
  */
-int countGap(const std::vector<std::unique_ptr<Car>> &array, int currentIndex) {
+int countGap(const std::vector<std::shared_ptr<Car>> &array, int currentIndex) {
   int gap = 0;
   for (std::size_t i = (currentIndex + 1) % array.size();;
        i = (i + 1) % array.size()) {
@@ -20,27 +20,26 @@ int countGap(const std::vector<std::unique_ptr<Car>> &array, int currentIndex) {
 
 void Road::step() {
   int length = cars.size();
-  std::vector<std::unique_ptr<Car>> newCars(length);
+  std::vector<std::shared_ptr<Car>> newCars(length);
 
   for (int i = 0; i < length; i++) {
     if (cars[i] != nullptr) {
       int spaceInFront = countGap(cars, i);
       cars[i].get()->updateVelocity(i, spaceInFront);
       int newPosition = (i + cars[i].get()->velocity) % length;
-      newCars.emplace(newCars.begin() + newPosition, cars[i].get());
+      newCars[newPosition] = cars[i];
     }
   }
-
-  cars = newCars;
+  cars = std::move(newCars);
 }
 
 void Road::printRoad() {
   for (std::size_t i = 0; i < cars.size(); i++) {
     if (!cars[i]) {
-      std::cout << "|.";
+      std::cout << ".";
     } else {
-      std::cout << "|" << cars[i].get()->id;
-      // std::cout << "|" << cars[i].get()->velocity;
+      // std::cout << "|" << cars[i].get()->id;
+      std::cout << cars[i].get()->velocity;
     }
   }
   std::cout << std::endl;

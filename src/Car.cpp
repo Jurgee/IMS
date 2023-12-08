@@ -6,7 +6,8 @@ void Car::updateVelocity(int whereIam, int spaceInFront) {
     this->velocity = this->V_max;
   }
   if (this->velocity + sg() > spaceInFront) {
-    this->velocity = std::min(this->velocity, spaceInFront - sg());
+    this->velocity =
+        std::min(this->velocity, (int)std::ceil(spaceInFront - sg() / 2));
   }
   if (this->velocity < 0) {
     this->velocity = 0;

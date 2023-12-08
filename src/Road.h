@@ -8,7 +8,7 @@
 
 class Road {
 public:
-  Road(std::vector<std::unique_ptr<Car>> initRoadState)
+  Road(std::vector<std::shared_ptr<Car>> initRoadState)
       : cars(std::move(initRoadState)) {}
 
   void step();
@@ -16,5 +16,5 @@ public:
   void printRoad();
 
 private:
-  std::vector<std::unique_ptr<Car>> cars;
+  std::vector<std::shared_ptr<Car>> cars;
 };
