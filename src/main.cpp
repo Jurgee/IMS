@@ -3,7 +3,7 @@
 
 #include <cstdlib>
 #include <ctime>
-#include <memory>
+#include <optional>
 #include <vector>
 
 #define ITERATION_COUNT 30000
@@ -12,20 +12,26 @@
 int main(int argc, char *argv[]) {
   std::srand(std::time(nullptr));
 
-  std::vector<std::unique_ptr<Car>> lane =
-      std::vector<std::unique_ptr<Car>>(100);
+  std::vector<std::optional<Car>> lane = std::vector<std::optional<Car>>(20);
 
-  int count = 0;
-  for (std::size_t i = 0; i < lane.size(); i++) {
-    if (std::rand() % 100 < 30) {
-      lane[i] = std::make_unique<Car>();
-      count++;
-    }
-  }
+  // for (std::size_t i = 0; i < lane.size(); i++) {
+  //   if (std::rand() % 100 < 30) {
+  //     lane[i] = std::make_unique<Car>();
+  //     count++;
+  //   }
+  // }
 
-  printf("Number of cars: %d\n", count);
+  int a = 1;
+  int vm = 5;
 
-  Road road = Road(std::move(lane));
+  lane.emplace(lane.begin(), 5, a, vm);
+  lane.emplace(lane.begin() + 5, 4, a, vm);
+  lane.emplace(lane.begin() + 7, 3, a, vm);
+  lane.emplace(lane.begin() + 10, 2, a, vm);
+  lane.emplace(lane.begin() + 14, 4, a, vm);
+  lane.emplace(lane.begin() + 18, 3, a, vm);
+
+  Road road = Road(lane);
 
   for (int i = 0; i < ITERATION_COUNT; i++) {
     road.printRoad();

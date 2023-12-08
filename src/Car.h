@@ -24,14 +24,15 @@ public:
   // acceleration in cells per second squared
   const float a;
   // additional security distance in cells
-  int sg() const { return std::ceil(2 / 3 + velocity - agr); }
+  int sg() const { return std::ceil((2 * velocity) / 3 - agr); }
   // current velocity in cells per second
   int velocity;
   // aggressiveness of the driver
   float agr;
 
-  int calcNewPosition(int whereIam, int spaceInFront);
+  const int id = std::rand() % 10;
+
+  void updateVelocity(int whereIam, int spaceInFront);
 
 private:
-  void updateVelocity(int whereIam, int spaceInFront);
 };
