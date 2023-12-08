@@ -19,19 +19,24 @@ public:
   Car(int startVelocity = 0, float a = 1, int V_max = 9, float agr = 0)
       : V_max(V_max), a(a), velocity(startVelocity), agr(agr) {}
 
+  // TODO Copy constructor
+  Car(const Car &other)
+      : Car(other.velocity, other.a, other.V_max, other.agr) {}
+
   // maximum velocity in cells per second
   const int V_max;
   // acceleration in cells per second squared
   const float a;
   // additional security distance in cells
-  int sg() const { return std::ceil(2 / 3 + velocity - agr); }
+  int sg() const { return std::ceil((2 * velocity) / 3 - agr); }
   // current velocity in cells per second
   int velocity;
   // aggressiveness of the driver
   float agr;
 
-  int calcNewPosition(int whereIam, int spaceInFront);
+  const int id = std::rand() % 10;
+
+  void updateVelocity(int whereIam, int spaceInFront);
 
 private:
-  void updateVelocity(int whereIam, int spaceInFront);
 };
