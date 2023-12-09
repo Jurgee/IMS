@@ -67,7 +67,6 @@ void ArgumentParser::printHelpAndExit(const char *programName) {
   std::cerr
       << "Usage: " << programName << " [options]" << std::endl
       << "Options:" << std::endl
-      << "  -h, --help                 Display this help message" << std::endl
       << "  -i, --iteration-count      Number of iterations (default: "
       << args.iterationCount << ")" << std::endl
       << "  -c, --car-count            Number of cars (default: "
@@ -83,8 +82,9 @@ void ArgumentParser::printHelpAndExit(const char *programName) {
       << "  -s, --chance-to-slow-down  Chance for cars to slow down (default: "
       << args.chanceToSlowDown << ")" << std::endl
       << "  -d, --debug                Enable debugging (default: "
-      << (args.debug ? "true" : "false") << ")" << std::endl;
-
+      << (args.debug ? "true" : "false") << ")" << std::endl
+      << std::endl
+      << "  -h, --help                 Display this help message" << std::endl;
   exit(EXIT_FAILURE);
 }
 
