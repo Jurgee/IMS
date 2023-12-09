@@ -1,4 +1,5 @@
 #include "Car.h"
+#include <iostream>
 
 void Car::updateVelocity(int whereIam, int spaceInFront) {
   this->velocity += this->a;
@@ -8,6 +9,9 @@ void Car::updateVelocity(int whereIam, int spaceInFront) {
   if (this->velocity + sg() > spaceInFront) {
     this->velocity =
         std::min(this->velocity, (int)std::ceil(spaceInFront - sg() / 2));
+  }
+  if (std::rand() % 100 < this->chanceToSlowDown) {
+    this->velocity -= this->a;
   }
   if (this->velocity < 0) {
     this->velocity = 0;

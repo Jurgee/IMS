@@ -11,22 +11,23 @@ public:
   /**
    * @brief Construct a new Car object
    *
-   * @param startVelocity initial velocity in cells per second, default 0
-   * @param a acceleration in cells per second squared, default 1
-   * @param V_max maximum velocity in cells per second, default 20
-   * @param agr aggressiveness of the driver, default 0
+   * @param startVelocity initial velocity in cells per second
+   * @param a acceleration in cells per second squared
+   * @param V_max maximum velocity in cells per second
+   * @param agr aggressiveness of the driver
    */
-  Car(int startVelocity = 0, float a = 1, int V_max = 9, float agr = 0)
-      : V_max(V_max), a(a), velocity(startVelocity), agr(agr) {}
+  Car(int startVelocity, int a, int V_max, int agr, int chanceToSlowDown)
+      : V_max(V_max), a(a), velocity(startVelocity), agr(agr),
+        chanceToSlowDown(chanceToSlowDown) {}
 
-  // TODO Copy constructor
   Car(const Car &other)
-      : Car(other.velocity, other.a, other.V_max, other.agr) {}
+      : Car(other.velocity, other.a, other.V_max, other.agr,
+            other.chanceToSlowDown) {}
 
   // maximum velocity in cells per second
   const int V_max;
   // acceleration in cells per second squared
-  const float a;
+  const int a;
   // additional security distance in cells
   int sg() const {
     int sg = std::ceil((2 * velocity) / 3 - agr);
@@ -35,9 +36,9 @@ public:
   // current velocity in cells per second
   int velocity;
   // aggressiveness of the driver
-  float agr;
+  int agr;
 
-  const int id = std::rand() % 10;
+  int chanceToSlowDown;
 
   void updateVelocity(int whereIam, int spaceInFront);
 

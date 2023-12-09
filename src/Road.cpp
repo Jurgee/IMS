@@ -34,12 +34,12 @@ void Road::step() {
 }
 
 void Road::printRoad() {
+  std::cout << "|";
   for (std::size_t i = 0; i < cars.size(); i++) {
     if (!cars[i]) {
-      std::cout << ".";
+      std::cout << " . |";
     } else {
-      // std::cout << "|" << cars[i].get()->id;
-      std::cout << cars[i].get()->velocity;
+      printf("%03d|", cars[i].get()->velocity);
     }
   }
   std::cout << std::endl;
