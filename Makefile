@@ -1,33 +1,32 @@
 CXX=g++
 CXXFLAGS=-std=c++17 -Wall -Wpedantic #-fopenmp #-Werror
 
-SRCDIR=src
+# Directories
+SRC_DIR = src
+TMP_DIR = tmp
+BIN_DIR = .
 
-SRCS = $(wildcard $(SRCDIR)/*.cpp)
-OBJS = $(SRCS:.cpp=.o)
+# Files
+SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(TMP_DIR)/%.o,$(SRC_FILES))
+TARGET = simulation
 
-EXEC = sym
 
-LOGIN=xx
+# Targets
+all: $(TARGET)
 
-.PHONY: all release debug run debug-run clean
+$(TARGET): $(OBJ_FILES)
+	$(CXX) $(CXXFLAGS) -o $(BIN_DIR)/$@ $^
 
-all: $(EXEC)
+$(TMP_DIR)/%.o: $(SRC_DIR)/%.cpp | $(TMP_DIR)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-$(EXEC): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+$(TMP_DIR):
+	mkdir -p $@
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-run: all
-	./$(EXEC) $(ARGS)
-
-debug-run: debug
-	./$(EXEC) $(ARGS)
-
-clean-run: clean all
-	./$(EXEC) $(ARGS)
 
 clean:
-	rm -f $(EXEC) $(OBJS)
+	rm -rf $(TMP_DIR) $(TARGET)
+
+
+.PHONY: all clean

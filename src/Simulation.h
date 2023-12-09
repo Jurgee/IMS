@@ -14,6 +14,11 @@
  */
 class Simulation {
 public:
+  enum Type {
+    TRAFFIC_JAM,
+    NORMAL_TRAFFIC
+  };
+
   /**
    * @brief Simulation parameters
    *
@@ -36,7 +41,7 @@ public:
    */
   Simulation(const SimulationParams &params) : parameters(params) {
     if (parameters.debug)
-      std::srand(0);
+      std::srand(1);
     else
       std::srand(std::time(nullptr));
   }
