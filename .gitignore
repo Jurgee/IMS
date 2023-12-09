@@ -36,3 +36,8 @@
 .vscode/
 *.txt
 sym
+simulation
+
+*.png
+*.dot
+.ipynb
