@@ -1,14 +1,18 @@
 #pragma once
 
 #include <iostream>
-#include <optional>
+#include <memory>
 #include <vector>
 
 #include "Car.h"
 
+/**
+ * @brief Road class represents a road with cars
+ *
+ */
 class Road {
 public:
-  Road(std::vector<std::optional<Car>> initRoadState)
+  Road(std::vector<std::shared_ptr<Car>> initRoadState)
       : cars(std::move(initRoadState)) {}
 
   void step();
@@ -16,5 +20,5 @@ public:
   void printRoad();
 
 private:
-  std::vector<std::optional<Car>> cars;
+  std::vector<std::shared_ptr<Car>> cars;
 };
