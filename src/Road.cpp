@@ -26,7 +26,7 @@ void Road::step() {
     if (cars[i] != nullptr) {
       int spaceInFront = countGap(cars, i);
       cars[i].get()->updateVelocity(i, spaceInFront);
-      int newPosition = (i + cars[i].get()->velocity) % length;
+      int newPosition = (i + cars[i].get()->getVelocity()) % length;
       newCars[newPosition] = cars[i];
     }
   }
@@ -39,7 +39,7 @@ void Road::printRoad() {
     if (!cars[i]) {
       std::cout << " . |";
     } else {
-      printf("%03d|", cars[i].get()->velocity);
+      printf("%03d|", cars[i].get()->getVelocity());
     }
   }
   std::cout << std::endl;

@@ -6,6 +6,10 @@
 
 #include "Car.h"
 
+/**
+ * @brief Road class represents a road with cars
+ *
+ */
 class Road {
 public:
   Road(std::vector<std::shared_ptr<Car>> initRoadState)

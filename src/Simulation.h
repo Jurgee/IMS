@@ -8,8 +8,16 @@
 #include "Car.h"
 #include "Road.h"
 
+/**
+ * @brief Simulation class represents a simulation of a road with cars
+ *
+ */
 class Simulation {
 public:
+  /**
+   * @brief Simulation parameters
+   *
+   */
   struct SimulationParams {
     int iterationCount;
     int carCount;
@@ -21,15 +29,24 @@ public:
     bool debug;
   };
 
-  Simulation(const SimulationParams &params) : _parameters(params) {
-    if (_parameters.debug)
+  /**
+   * @brief Construct a new Simulation object
+   *
+   * @param params simulation parameters
+   */
+  Simulation(const SimulationParams &params) : parameters(params) {
+    if (parameters.debug)
       std::srand(0);
     else
       std::srand(std::time(nullptr));
   }
 
+  /**
+   * @brief Run the simulation
+   *
+   */
   void run();
 
 private:
-  SimulationParams _parameters;
+  SimulationParams parameters;
 };
