@@ -59,6 +59,43 @@ ArgumentParser::CommandLineArguments ArgumentParser::parse(int argc,
     }
   }
 
+  if (args.carCount > args.roadLength) {
+    std::cerr << "Error: Number of cars must be less than or equal to the "
+                 "length of the road."
+              << std::endl;
+    printHelpAndExit(argv[0]);
+  }
+
+  if (args.chanceToSlowDown < 0 || args.chanceToSlowDown > 100) {
+    std::cerr << "Error: Chance to slow down must be between 0 and 100."
+              << std::endl;
+    printHelpAndExit(argv[0]);
+  }
+
+  if (args.carMaxVelocity < 0) {
+    std::cerr << "Error: Maximum velocity of cars must be greater than 0."
+              << std::endl;
+    printHelpAndExit(argv[0]);
+  }
+
+  if (args.acceleration < 0) {
+    std::cerr << "Error: Acceleration of cars must be greater than 0."
+              << std::endl;
+    printHelpAndExit(argv[0]);
+  }
+
+  if (args.roadLength < 0) {
+    std::cerr << "Error: Length of the road must be greater than 0."
+              << std::endl;
+    printHelpAndExit(argv[0]);
+  }
+
+  if (args.iterationCount < 0) {
+    std::cerr << "Error: Number of iterations must be greater than 0."
+              << std::endl;
+    printHelpAndExit(argv[0]);
+  }
+
   return args;
 }
 
