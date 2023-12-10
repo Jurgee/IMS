@@ -24,6 +24,8 @@ $(TMP_DIR)/%.o: $(SRC_DIR)/%.cpp | $(TMP_DIR)
 $(TMP_DIR):
 	mkdir -p $@
 
+run:
+	./$(TARGET) -i 4000 -c 60 -r 4000 -v 38 -a 4 -l 3 -s 10 -d 1
 
 clean:
 	rm -rf $(TMP_DIR) $(TARGET)

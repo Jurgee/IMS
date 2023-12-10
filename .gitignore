@@ -32,7 +32,9 @@
 *.app
 
 
+
 # mine
 .vscode/
 *.txt
-sym
+simulation
+tmp
