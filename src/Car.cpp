@@ -1,29 +1,38 @@
+/*
+* Project: IMS 2023/2024 CA in traffic
+* Authors: Jiří Štípek (xstipe02) and Štefan Pekník (xpekni01)
+*/
+
 #include "Car.h"
 #include <iostream>
 
-void Car::updateVelocity(int whereIam, int spaceInFront) {
-  if(spaceInFront == 1)
+void Car::updateVelocity(int whereIam, int spaceInFront)
+{
+  if (spaceInFront == 1)
   {
     this->velocity = 1;
     return;
   }
   // step 1/ acceleration
   this->velocity += this->a;
-  if (this->velocity > this->V_max) {
+  if (this->velocity > this->V_max)
+  {
     this->velocity = this->V_max;
   }
   // step 2/ validating space in front
-  if (this->velocity + sg() > spaceInFront) {
+  if (this->velocity + sg() > spaceInFront)
+  {
     this->velocity =
         std::min(this->velocity, (int)std::ceil(spaceInFront / 2));
   }
   // step 3/ random slow down
-  if (std::rand() % 100 < this->chanceToSlowDown) {
+  if (std::rand() % 100 < this->chanceToSlowDown)
+  {
     this->velocity -= this->a;
   }
   // step 4/ ensuring non-negative velocity
-  if (this->velocity < 0) {
+  if (this->velocity < 0)
+  {
     this->velocity = 0;
   }
-  
 }

@@ -1,7 +1,9 @@
+/*
+* Project: IMS 2023/2024 CA in traffic
+* Authors: Jiří Štípek (xstipe02) and Štefan Pekník (xpekni01)
+*/
+
 #include "Road.h"
-
-#define PROBABILITY_TO_SLOW_DOWN 0.8
-
 /**
  * @brief Count number of empty cells in front of the car
  *

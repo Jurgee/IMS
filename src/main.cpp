@@ -1,5 +1,9 @@
-#include "ArgumentParser.h"
+/*
+* Project: IMS 2023/2024 CA in traffic
+* Authors: Jiří Štípek (xstipe02) and Štefan Pekník (xpekni01)
+*/
 
+#include "ArgumentParser.h"
 #include "Simulation.h"
 
 int main(int argc, char *argv[]) {

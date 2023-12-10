@@ -1,3 +1,8 @@
+/*
+* Project: IMS 2023/2024 CA in traffic
+* Authors: Jiří Štípek (xstipe02) and Štefan Pekník (xpekni01)
+*/
+
 #pragma once
 
 #include <cstdlib>
@@ -17,10 +22,10 @@ public:
     // TODO
     int iterationCount = 1000;
     int carCount = 20;
-    int carMaxVelocity = 38;      // 135 km/h
+    int carMaxVelocity = 38;      // 38 m/s = 136.8 km/h	
     int roadLength = 1000;         // 1 km
-    int acceleration = 4;         // 11 km/h^2
-    int levelOfAggressiveness = 0; // 0%
+    int acceleration = 4;         // 4 m/s
+    int levelOfAggressiveness = 0; // 1-5
     double chanceToSlowDown = 15;  // 15%
     bool debug = false;
   };
