@@ -25,8 +25,8 @@ def get_data(source):
 
 def main():
     if len(sys.argv) >= 2:
-        title = source
-        source = open(sys.argv[1], "r")
+        title = sys.argv[1]
+        source = open(title, "r")
     else:
         title = "stdin"
         source = sys.stdin
@@ -46,14 +46,46 @@ def main():
     velocities = road_state[nonzero_indices]
     colors = np.array([velocity_to_color(v) for v in velocities])
 
-    ax.scatter(nonzero_indices[1], nonzero_indices[0], color=colors, s=2)
+    # Swap x and y axes in scatter plot
+    scatter = ax.scatter(nonzero_indices[1], nonzero_indices[0], color=colors, s=2)
 
     # Customize plot appearance
-    ax.set_ylabel("Time")
-    ax.set_xlabel("Distance on the Road")
+    ax.set_xlabel("Distance on the Road")  # Switch x and y axis labels
+    ax.set_ylabel("Time")  # Switch x and y axis labels
     ax.set_title("Road State Over Time")
     ax.set_aspect("equal")
     ax.grid(True)
+
+    # Add legend
+    legend_labels = ["0 Velocity", f"Max Velocity ({CAR_MAX_VELOCITY})"]
+
+    # Create a legend with specified handles and labels
+    legend = ax.legend(
+        handles=[
+            plt.Line2D(
+                [0],
+                [0],
+                marker="o",
+                color="w",
+                label=legend_labels[0],
+                markerfacecolor="blue",
+                markersize=5,
+            ),
+            plt.Line2D(
+                [0],
+                [0],
+                marker="o",
+                color="w",
+                label=legend_labels[1],
+                markerfacecolor="red",
+                markersize=5,
+            ),
+        ],
+        loc="upper right",
+    )
+
+    # Set the legend title
+    legend.set_title("Legend")
 
     # Specify the file name based on the variable name
     file_name = f"plot_{title}.png"
@@ -62,7 +94,7 @@ def main():
     fig.savefig(file_name)
 
     # Show the plot
-    # plt.show()
+    plt.show()
 
 
 if __name__ == "__main__":
