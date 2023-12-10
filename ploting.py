@@ -46,11 +46,11 @@ def main():
     velocities = road_state[nonzero_indices]
     colors = np.array([velocity_to_color(v) for v in velocities])
 
-    ax.scatter(nonzero_indices[0], nonzero_indices[1], color=colors, s=2)
+    ax.scatter(nonzero_indices[1], nonzero_indices[0], color=colors, s=2)
 
     # Customize plot appearance
-    ax.set_xlabel("Time")
-    ax.set_ylabel("Distance on the Road")
+    ax.set_ylabel("Time")
+    ax.set_xlabel("Distance on the Road")
     ax.set_title("Road State Over Time")
     ax.set_aspect("equal")
     ax.grid(True)
