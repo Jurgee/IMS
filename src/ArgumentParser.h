@@ -17,9 +17,9 @@ public:
     // TODO
     int iterationCount = 1000;
     int carCount = 20;
-    int carMaxVelocity = 135;      // 135 km/h
+    int carMaxVelocity = 38;      // 135 km/h
     int roadLength = 1000;         // 1 km
-    int acceleration = 11;         // 11 km/h^2
+    int acceleration = 4;         // 11 km/h^2
     int levelOfAggressiveness = 0; // 0%
     double chanceToSlowDown = 15;  // 15%
     bool debug = false;

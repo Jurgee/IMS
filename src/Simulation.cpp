@@ -12,7 +12,7 @@ void Simulation::run() {
        i++) {
     // the first fifth of the cars will start at max velocity and are scattered
     // evenly with save gaps
-    if (count < parameters.carCount / 5) {
+    if (count < parameters.carCount / 3) {
       Car car(parameters.carMaxVelocity, parameters.acceleration,
               parameters.carMaxVelocity, parameters.levelOfAggressiveness,
               parameters.chanceToSlowDown);

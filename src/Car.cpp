@@ -2,6 +2,11 @@
 #include <iostream>
 
 void Car::updateVelocity(int whereIam, int spaceInFront) {
+  if(spaceInFront == 1)
+  {
+    this->velocity = 1;
+    return;
+  }
   // step 1/ acceleration
   this->velocity += this->a;
   if (this->velocity > this->V_max) {
@@ -10,7 +15,7 @@ void Car::updateVelocity(int whereIam, int spaceInFront) {
   // step 2/ validating space in front
   if (this->velocity + sg() > spaceInFront) {
     this->velocity =
-        std::min(this->velocity, (int)std::ceil(spaceInFront - sg() / 2));
+        std::min(this->velocity, (int)std::ceil(spaceInFront / 2));
   }
   // step 3/ random slow down
   if (std::rand() % 100 < this->chanceToSlowDown) {
@@ -20,4 +25,5 @@ void Car::updateVelocity(int whereIam, int spaceInFront) {
   if (this->velocity < 0) {
     this->velocity = 0;
   }
+  
 }

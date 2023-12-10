@@ -58,7 +58,7 @@ public:
    * @return int safe gap
    */
   int sg() const {
-    int sg = std::ceil((2 * velocity) / 3 - agr);
+    int sg = std::ceil((2 * velocity ) / agr);
     return sg > 0 ? sg : 0;
   }
 
