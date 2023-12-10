@@ -52,13 +52,11 @@ public:
 
   // additional security distance in cells
   /**
-   * @brief Get the Safe Gap of the car:
-   * safe gap = (2 * velocity) / 3  - aggressiveness
-   *
+   * @brief Get the Safe Gap of the car: 2 * velocity / agressiveness
    * @return int safe gap
    */
   int sg() const {
-    int sg = std::ceil((2 * velocity ) / agr);
+    int sg = std::ceil((2 * velocity) / agr);
     return sg > 0 ? sg : 0;
   }
 
