@@ -10,15 +10,16 @@ void Simulation::run() {
   int stepSize = lane.size() / (parameters.carCount - 1);
 
   // Loop to distribute instances across the vector with the largest gap
-  for (int i = 0; i < parameters.carCount; ++i) {
-    int index = i * stepSize;
-    Car car(0);
-    lane[index] = std::make_shared<Car>(car);
-  }
-
-  // for (int i = 0; i < lane.size(); i++) {
-  //   lane[i] = std::make_shared<Car>()
+  // for (int i = 0; i < parameters.carCount; ++i) {
+  //   int index = i * stepSize;
+  //   Car car(0);
+  //   lane[index] = std::make_shared<Car>(car);
   // }
+  // std::cout << "got here" << std::endl;
+
+  for (int i = 0; i < parameters.carCount; i++) {
+    lane[i] = std::make_shared<Car>(0);
+  }
 
   // initialize the road with the lane
   Road road = Road(std::move(lane));
