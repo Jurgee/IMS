@@ -20,12 +20,12 @@ public:
    * @param V_max maximum velocity in cells per second
    * @param agr aggressiveness of the driver
    */
-  Car(int startVelocity, int a, int V_max, int agr, int chanceToSlowDown)
-      : V_max(V_max), a(a), velocity(startVelocity), agr(agr),
+  Car(int startVelocity, int a, int b, int V_max, int agr, int chanceToSlowDown)
+      : V_max(V_max), a(a), b(b), velocity(startVelocity), agr(agr),
         chanceToSlowDown(chanceToSlowDown) {}
 
   Car(const Car &other)
-      : Car(other.velocity, other.a, other.V_max, other.agr,
+      : Car(other.velocity, other.a, other.b, other.V_max, other.agr,
             other.chanceToSlowDown) {}
 
   /**
@@ -50,23 +50,13 @@ public:
    */
   int getAcceleration() const { return a; }
 
-  // additional security distance in cells
-  /**
-   * @brief Get the Safe Gap of the car:
-   * safe gap = (2 * velocity) / 3  - aggressiveness
-   *
-   * @return int safe gap
-   */
-  int sg() const {
-    int sg = std::ceil((2 * velocity) / 3 - agr);
-    return sg > 0 ? sg : 0;
-  }
-
 private:
   // maximum velocity in cells per second
   const int V_max;
   // acceleration in cells per second squared
   const int a;
+  // deceleration in cells per second squared
+  const int b;
   // current velocity in cells per second
   int velocity;
   // aggressiveness of the driver
